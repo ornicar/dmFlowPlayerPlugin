@@ -1,0 +1,7 @@
+parameters:
+
+  media_tag_application.class:  dmMediaTagFlowPlayerApplication # Responsible for rendering flash objects
+  
+  media_tag_video.class:        dmMediaTagFlowPlayerVideo       # Responsible for rendering video
+  
+  media_tag_audio.class:        dmMediaTagFlowPlayerAudio       # Responsible for rendering audio

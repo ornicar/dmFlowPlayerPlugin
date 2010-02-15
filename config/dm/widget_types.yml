@@ -1,0 +1,5 @@
+dmWidgetContent:
+
+  flowPlayer:
+    name:               "Flow Player"
+    cache:              true

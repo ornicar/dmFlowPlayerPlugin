@@ -1,0 +1,14 @@
+js:
+
+  dmFlowPlayerPlugin:
+    
+    flowPlayer:       lib/flowplayer-3.1.4.min
+
+    widgetForm:       widget/form
+    widgetView:       widget/view
+
+other:
+
+  dmFlowPlayerPlugin:
+  
+    swfPlayer:        swf/lib/flowplayer-3.1.5.swf
