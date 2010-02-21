@@ -6,3 +6,9 @@ Documentation
 -------------
 
 See the online documentation : [Diem Flow Player plugin documentation](http://diem-project.org/plugins/dmflowplayerplugin)
+
+Changelog
+---------
+
+1.0 2009/12
+Initial release
