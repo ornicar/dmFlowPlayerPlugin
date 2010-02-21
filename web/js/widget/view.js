@@ -17,7 +17,7 @@
 
     switch (options.mimeGroup)
     {
-      case 'application':
+      case 'application': // pure Flash
         flashembed(id, $.extend(options.flashConfig, {
           src: options.src
         }), options.flashVars);
