@@ -12,3 +12,8 @@ Changelog
 
 1.0 2009/12
 Initial release
+
+1.1 2010/02/24
+Moved flowplayer options construction to PHP.
+Made _media() read video, audio and flash even in admin app.
+Allowed to filter and modify flowplayer options with an event: http://diem-project.org/plugins/dmflowplayerplugin#filter-and-modify-flowplayer-options
