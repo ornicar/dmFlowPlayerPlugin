@@ -54,13 +54,35 @@ abstract class dmMediaTagFlowPlayerPlayable extends dmMediaTagBaseFlowPlayer
 
     return $this->setOption('resize_method', $method);
   }
-  
-  protected function getJsonAttributes()
+
+  protected function jsonifyAttributes(array $attributes)
   {
-    return array_merge(
-      parent::getJsonAttributes(),
-      array('autoplay', 'player_web_path', 'resize_method', 'control')
-    );
+    $flowPlayerOptions = $this->getFlowplayerOptions($attributes);
+
+    foreach(array('src', 'mimeGroup', 'autoplay', 'player_web_path', 'resize_method', 'control') as $jsonAttribute)
+    {
+      unset($attributes[$jsonAttribute]);
+    }
+
+    $attributes['class'][] = json_encode($flowPlayerOptions);
+
+    return $attributes;
+  }
+
+  protected function getFlowPlayerOptions(array $attributes)
+  {
+    return $this->filterFlowPlayerOptions(array(
+      'clip' => array(
+        'url' => $attributes['src'],
+        'autoPlay' => $attributes['autoplay'],
+        'scaling' => $attributes['resize_method']
+      ),
+      'plugins' => array(
+        'controls' => $attributes['control']
+      ),
+      'player_web_path' => $attributes['player_web_path'],
+      'mimeGroup' => $attributes['mimeGroup']
+    ), $attributes);
   }
 
   public function getAvailableMethods()

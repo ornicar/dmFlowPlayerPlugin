@@ -10,7 +10,8 @@ class dmWidgetContentFlowPlayerView extends dmWidgetContentBaseMediaView
 
     $this->addJavascript(array(
       'dmFlowPlayerPlugin.flowPlayer',
-      'dmFlowPlayerPlugin.widgetView'
+      'dmFlowPlayerPlugin.dmFlowPlayer',
+      'dmFlowPlayerPlugin.launcher'
     ));
   }
 

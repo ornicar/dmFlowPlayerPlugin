@@ -26,12 +26,27 @@ class dmMediaTagFlowPlayerApplication extends dmMediaTagBaseFlowPlayer
   {
     return $this->setOption('flashVars', sfToolkit::arrayDeepMerge($this->get('flashVars'), $vars));
   }
-  
-  protected function getJsonAttributes()
+
+  protected function jsonifyAttributes(array $attributes)
   {
-    return  array_merge(
-      parent::getJsonAttributes(),
-      array('flashConfig', 'flashVars')
-    );
+    $flowPlayerOptions = $this->getFlowPlayerOptions($attributes);
+
+    foreach(array('src', 'mimeGroup', 'flashConfig', 'flashVars') as $jsonAttribute)
+    {
+      unset($attributes[$jsonAttribute]);
+    }
+
+    $attributes['class'][] = json_encode($flowPlayerOptions);
+
+    return $attributes;
+  }
+
+  protected function getFlowPlayerOptions(array $attributes)
+  {
+    return $this->filterFlowPlayerOptions(array(
+      'flashConfig' => array_merge(array('src' => $attributes['src']), $attributes['flashConfig']),
+      'flashVars' => $attributes['flashVars'],
+      'mimeGroup' => $attributes['mimeGroup']
+    ), $attributes);
   }
 }

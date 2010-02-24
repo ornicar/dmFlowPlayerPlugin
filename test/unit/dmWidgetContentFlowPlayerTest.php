@@ -271,7 +271,7 @@ $helper->get('service_container')->setParameter('widget_renderer.widget', $widge
 $widgetRenderer = $helper->get('service_container')->getService('widget_renderer');
 
 $t->is($widgetRenderer->getStylesheets(), array(), 'This widget view requires additional stylesheet');
-$t->is($widgetRenderer->getJavascripts(), array('dmFlowPlayerPlugin.flowPlayer', 'dmFlowPlayerPlugin.widgetView'), 'This widget requires 2 additional javascripts');
+$t->is($widgetRenderer->getJavascripts(), array('dmFlowPlayerPlugin.flowPlayer', 'dmFlowPlayerPlugin.dmFlowPlayer', 'dmFlowPlayerPlugin.launcher'), 'This widget requires 2 additional javascripts');
 
 $t->ok($widgetRenderer, 'The widget has been rendered');
 

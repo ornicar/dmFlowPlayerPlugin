@@ -10,7 +10,8 @@ abstract class dmMediaTagBaseFlowPlayer extends dmMediaTag
 
     $this->addJavascript(array(
       'dmFlowPlayerPlugin.flowPlayer',
-      'dmFlowPlayerPlugin.widgetView'
+      'dmFlowPlayerPlugin.dmFlowPlayer',
+      'dmFlowPlayerPlugin.launcher'
     ));
   }
   
@@ -88,32 +89,15 @@ abstract class dmMediaTagBaseFlowPlayer extends dmMediaTag
     return $attributes;
   }
   
-  protected function jsonifyAttributes(array $attributes)
-  {
-    $jsonAttributes = array();
-    
-    foreach($this->getJsonAttributes() as $jsonAttribute)
-    {
-      $jsonAttributes[$jsonAttribute] = $attributes[$jsonAttribute];
-      
-      unset($attributes[$jsonAttribute]);
-    }
-    
-    // ease unit tests
-    ksort($jsonAttributes);
-    
-    $attributes['class'][] = json_encode($jsonAttributes);
-    
-    return $attributes;
-  }
-  
-  protected function getJsonAttributes()
-  {
-    return array('src', 'mimeGroup');
-  }
-  
   protected function cleanDimension($dimension)
   {
     return is_numeric($dimension) ? $dimension.'px' : $dimension;
+  }
+
+  protected function filterFlowPlayerOptions(array $options, array $attributes)
+  {
+    $event = new sfEvent($this, 'dm_flow_player.filter_options', array('attributes' => $attributes));
+
+    return $this->context->getEventDispatcher()->filter($event, $options)->getReturnValue();
   }
 }
