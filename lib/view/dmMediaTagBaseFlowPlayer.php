@@ -96,16 +96,16 @@ abstract class dmMediaTagBaseFlowPlayer extends dmMediaTag
 
   protected function filterFlowPlayerOptions(array $options, array $attributes)
   {
-    $event = new sfEvent($this, 'dm_flow_player.filter_options', array('attributes' => $attributes));
-
     if($this->resource->isType('media'))
     {
-      $options['dm_media_id'] = $this->resource->getSource()->id;
+      $attributes['dm_media_id'] = $this->resource->getSource()->id;
     }
     else
     {
-      $options['dm_media_id'] = null;
+      $attributes['dm_media_id'] = null;
     }
+
+    $event = new sfEvent($this, 'dm_flow_player.filter_options', array('attributes' => $attributes));
 
     return $this->context->getEventDispatcher()->filter($event, $options)->getReturnValue();
   }
